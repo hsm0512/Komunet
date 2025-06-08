@@ -1,0 +1,43 @@
+<div class="container">
+  <!-- お問い合わせボタン -->
+  <div class="text-end mt-3">
+    <%= link_to "お問い合わせ", "#", class: "btn btn-outline-primary" %>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <div class="text-center mt-5">
+    <!-- LOGOマーク -->
+    <%= image_tag "logo.png", class: "img-fluid mb-4", style: "max-width: 200px;" %>
+
+    <!-- 新規登録・ログインボタン -->
+    <div class="d-grid gap-3 col-6 mx-auto">
+      <%= link_to "新規登録", "#", class: "btn btn-primary btn-lg" %>
+      <%= link_to "ログイン", "#", class: "btn btn-outline-secondary btn-lg" %>
+    </div>
+
+    <!-- サイト説明 -->
+    <div class="mt-5">
+      <h2 class="mb-4">Welcome to "Komunet"</h2>
+      <p class="lead">
+        このサイトは、全国の地方自治体の職員による交流を促進するためのプラットフォームです。<br>
+        ユーザー同士が気軽に情報交換や意見交換を行うことを目的としています。<br>
+        安全で快適なコミュニケーション環境を維持するため、以下のルールを守ってご利用ください。
+      </p>
+    </div>
+
+    <!-- 使用上のルール -->
+    <div class="mt-4">
+      <h3 class="mb-3">Rules & Policies</h3>
+      <ul class="list-unstyled">
+        <li class="mb-2">✓ 地方自治体の職員以外の利用はご遠慮ください</li>
+        <li class="mb-2">✓ 本サイトでの投稿を投稿主に無断で他のSNSサービスに転載することは禁止します</li>
+        <li class="mb-2">✓ 個人情報などの機密情報を扱う場合は、必ず法令や各自治体の条例等を遵守してください</li>
+        <li class="mb-2">✓ 不適切な投稿や勧誘を行った場合は、アカウントを停止します</li>
+        <li class="mb-2">✓ 業務に関する相談や情報共有、PRのほか、雑談や悩み相談も大歓迎です</li>
+        <li class="mb-2">✓ システムの不具合が発生した場合は、お手数ですがお問い合わせフォームより管理者にお知らせください</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
