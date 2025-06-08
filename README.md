@@ -1,4 +1,6 @@
 # Komunet
+<img src="app/assets/images/logo.png" alt="ロゴ画像" width="300" height="300">
+
 ## 概要
 Komunetは、全国の地方自治体に勤務する公務員同士がつながり、情報交換や交流ができるSNSアプリです。気軽に相談や事例共有、PRなどを行うことを目的としています。
 ## ターゲットユーザ
