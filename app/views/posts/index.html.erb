@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <!-- 検索フォーム -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <%= form_with url: posts_path, method: :get, class: "d-flex gap-3" do |f| %>
+        <div class="flex-grow-1">
+          <%= f.text_field :keyword, placeholder: "キーワード検索", class: "form-control" %>
+        </div>
+        <div class="flex-grow-1">
+          <%= f.select :job_category_id, 
+              JobCategory.all.map { |c| [c.name, c.id] },
+              { include_blank: "業務分野を選択" },
+              class: "form-select" %>
+        </div>
+        <div class="flex-grow-1">
+          <%= f.select :style_id,
+              Style.all.map { |s| [s.name, s.id] },
+              { include_blank: "投稿スタイルを選択" },
+              class: "form-select" %>
+        </div>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 投稿一覧 -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @posts.each do |post| %>
+      <div class="col">
+        <div class="card h-100">
+          <% if post.image_id.present? %>
+            <%= attachment_image_tag post, :image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+          <% end %>
+          <div class="card-body">
+            <h3 class="card-title h4 mb-3"><%= post.title %></h3>
+            <div class="d-flex justify-content-between mb-3">
+              <span class="badge bg-primary"><%= post.job_category.name %></span>
+              <span class="badge bg-secondary"><%= post.style.name %></span>
+            </div>
+            <p class="card-text"><%= truncate(post.content, length: 100) %></p>
+          </div>
+          <div class="card-footer">
+            <%= link_to "詳細を見る", post_path(post), class: "btn btn-outline-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
