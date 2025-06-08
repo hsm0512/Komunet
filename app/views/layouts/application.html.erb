@@ -9,6 +9,25 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+  <% unless controller_name == 'homes' && action_name == 'top' %>
+    <header class="header">
+      <div class="header-left">
+        <%= link_to root_path, class: "logo" do %>
+          <%= link_to image_tag("logo.png", alt: "Komunet", class: "logo-image"), "#" %>
+        <% end %>
+      </div>
+      <nav class="header-right">
+        <ul class="nav-menu">
+          <li><%= link_to "投稿する", "#", class: "nav-link" %></li>
+          <li><%= link_to "投稿一覧", "#", class: "nav-link" %></li>
+          <li><%= link_to "下書き一覧", "#", class: "nav-link" %></li>
+          <li><%= link_to "ユーザー一覧", "#", class: "nav-link" %></li>
+          <li><%= link_to "マイページ編集", "#", class: "nav-link" %></li>
+          <li><%= link_to "ログアウト", "#", class: "nav-link" %></li>
+        </ul>
+      </nav>
+    </header>
+  <% end %>
 
   <body>
     <%= yield %>
