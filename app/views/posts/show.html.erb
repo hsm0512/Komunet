@@ -25,8 +25,9 @@
         </div>
       <% end %>
       <div class="mt-6 mb-5">
-        <div class="text-center">
+        <div class="d-flex justify-content-center gap-3">
           <%= link_to "編集する", edit_post_path(@post), class: "btn btn-primary" %>
+          <%= link_to "削除する", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
         </div>
       </div>
     </div>
