@@ -1,1 +1,38 @@
-<h1>投稿編集画面あとでつくる</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="mb-4">投稿編集中</h2>
+
+      <%= form_with model: @post, local: true do |f| %>
+        <div class="mb-3">
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :content, "本文" %>
+          <%= f.text_area :content, class: "form-control", rows: 5 %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :job_category_id, "業務分野" %>
+          <%= f.collection_select :job_category_id, JobCategory.all, :id, :name, {}, class: "form-select" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :style_id, "投稿スタイル" %>
+          <%= f.collection_select :style_id, Style.all, :id, :name, {}, class: "form-select" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :image, "画像ファイルを添付" %>
+          <%= f.file_field :image, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit "更新する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
