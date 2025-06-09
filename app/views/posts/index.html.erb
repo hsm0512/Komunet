@@ -29,12 +29,9 @@
     <% @posts.each do |post| %>
       <div class="col">
         <div class="card h-100">
-          <% if post.image_id.present? %>
-            <%= attachment_image_tag post, :image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
-          <% end %>
           <div class="card-body">
             <h3 class="card-title h4 mb-3"><%= post.title %></h3>
-            <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex gap-2 mb-3">
               <span class="badge bg-primary"><%= post.job_category.name %></span>
               <span class="badge bg-secondary"><%= post.style.name %></span>
             </div>

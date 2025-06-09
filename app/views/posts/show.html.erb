@@ -1,1 +1,30 @@
-<h1>投稿詳細画面あとでつくる</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="mb-4"><%= @post.title %></h1>
+      
+      <div class="mb-4">
+        <h4>本文</h4>
+        <p><%= @post.content %></p>
+      </div>
+
+      <div class="mb-4">
+        <h4>業務分野</h4>
+        <p><%= @post.job_category.name %></p>
+      </div>
+
+      <div class="mb-4">
+        <h4>投稿スタイル</h4>
+        <p><%= @post.style.name %></p>
+      </div>
+
+      <% if @post.image_id.present? %>
+        <div class="mb-4">
+          <h4>画像</h4>
+          <%= attachment_image_tag(@post, :image, class: "img-fluid", style: "height: 600px; width: auto;") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
