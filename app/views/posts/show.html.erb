@@ -17,7 +17,19 @@
           </div>
         </div>
       </div>
+      
+      <% if @comment.errors.any? %>
+        <div class="alert alert-danger">
+          <h4><%= @comment.errors.count %>件のエラーが発生しました</h4>
+          <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
+      
       <h1 class="mb-5"><%= @post.title %></h1>
       
       <div class="mb-5">
@@ -84,12 +96,14 @@
         <% end %>
       </div>
 
+      <% if @post.user == current_user %>
       <div class="mt-6 mb-5">
         <div class="d-flex justify-content-center gap-3">
           <%= link_to "編集する", edit_post_path(@post), class: "btn btn-primary" %>
           <%= link_to "削除する", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
         </div>
       </div>
+      <% end %>
     </div>
   </div>
 </div>

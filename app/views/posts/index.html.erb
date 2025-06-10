@@ -30,8 +30,8 @@
         <div class="card h-100">
           <div class="card-body">
             <div class="d-flex align-items-center mb-3">
-              <% if post.user.profile_image_id.present? %>
-                <%= attachment_image_tag post.user, :profile_image_id, class: "rounded-circle me-2", size: "40x40" %>
+              <% if post.user.profile_image.present? %>
+                <%= attachment_image_tag post.user, :profile_image, class: "rounded-circle me-2", size: "40x40" %>
               <% else %>
                 <%= image_tag "no_image.png", class: "rounded-circle me-2", size: "40x40" %>
               <% end %>
