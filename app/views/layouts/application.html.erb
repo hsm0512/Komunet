@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <% unless controller_name == 'homes' && action_name == 'top' %>
+  <% if user_signed_in? %>
     <header class="header">
       <div class="header-left">
         <%= link_to root_path, class: "logo" do %>
