@@ -22,7 +22,7 @@
 
         <div class="mb-3">
           <%= f.label :content, "本文" %>
-          <%= f.text_area :content, class: "form-control", rows: 5 %>
+          <%= f.text_area :content, class: "form-control", rows: 10 %>
         </div>
 
         <div class="mb-3">
@@ -41,6 +41,10 @@
             <%= attachment_image_tag @post, :image, size: "300x300", class: "form-control" %>
           <% end %>
           <%= f.file_field :image %>
+        </div>
+
+        <div class="mb-3">
+        <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, {},{ class: "form-control" } %>
         </div>
 
         <div class="mb-3">

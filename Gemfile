@@ -80,3 +80,5 @@ gem "refile-mini_magick"
 gem "devise"
 
 gem "kaminari"
+
+gem "enum_help"

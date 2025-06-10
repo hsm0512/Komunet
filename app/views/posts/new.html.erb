@@ -34,6 +34,9 @@
             <%= f.file_field :image, class: "form-control" %>
           </div>
           <div class="mb-4">
+            <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, {},{ class: "form-control" } %>
+          </div>
+          <div class="mb-4">
             <%= f.submit "投稿する", class: "btn btn-primary" %>
           </div>
       <% end %>

@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).reverse_order
+    @posts = Post.published.page(params[:page]).reverse_order
 
     # キーワード検索
     if params[:keyword].present?
@@ -57,9 +57,13 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def confirm
+    @posts = current_user.posts.draft.page(params[:page]).reverse_order
+  end
+
 
   private
   def post_params
-    params.require(:post).permit(:title, :content, :job_category_id, :style_id, :image)
+    params.require(:post).permit(:title, :content, :job_category_id, :style_id, :image, :status)
   end
 end
