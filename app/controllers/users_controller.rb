@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def index
     @users = User.page(params[:page]).per(5)
+
+    # キーワード検索
+    if params[:keyword].present?
+      @users = @users.where("name LIKE ? OR user_name LIKE ? OR organization_name LIKE ? OR department_name LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+    end 
   end
 
   def show

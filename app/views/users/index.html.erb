@@ -1,1 +1,11 @@
+<div class="row justify-content-end mb-4">
+  <div class="col-md-4">
+    <%= form_with url: users_path, method: :get, class: "d-flex gap-3" do |f| %>
+      <div class="flex-grow-1">
+        <%= f.text_field :keyword, placeholder: "キーワード検索", class: "form-control" %>
+      </div>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
 <%= render "index", users: @users %>
