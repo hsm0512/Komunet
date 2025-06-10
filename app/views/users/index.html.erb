@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-md-3 mb-4">
+        <%= link_to user_path(user), class: "text-decoration-none" do %>
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <% if user.profile_image_id.present? %>
+                  <%= attachment_image_tag user, :profile_image_id, class: "rounded-circle", size: "50x50" %>
+                <% else %>
+                  <%= image_tag "no_image.png", class: "rounded-circle", size: "50x50" %>
+                <% end %>
+                <div class="ms-2">
+                  <h5 class="card-title text-dark mb-1 small"><%= user.name %></h5>
+                  <p class="card-text text-muted mb-1 small">@<%= user.user_name %></p>
+                  <p class="card-text text-muted mb-1 small"><%= user.organization_name %></p>
+                  <p class="card-text text-muted mb-1 small"><%= user.department_name %></p>
+                  <p class="card-text text-muted mb-1 small"><i class="bi bi-pencil"></i> <%= user.posts.count %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @users %>
+</div>
