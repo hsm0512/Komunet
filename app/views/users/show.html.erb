@@ -5,7 +5,7 @@
                 <div class="card-body">
                 <div class="d-flex align-items-center">
                     <% if @user.profile_image_id.present? %>
-                    <%= attachment_image_tag @user, :profile_image_id, class: "rounded-circle", size: "100x100" %>
+                    <%= attachment_image_tag @user, :profile_image, class: "rounded-circle", size: "100x100" %>
                     <% else %>
                     <%= image_tag "no_image.png", class: "rounded-circle", size: "100x100" %>
                     <% end %>
