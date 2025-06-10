@@ -34,14 +34,28 @@
                           </div>
                           <% if current_user != @user %>
                           <% if current_user.following?(@user) %>
-                            <%= link_to "フォローを外す", user_relationships_path(@user), method: :delete, class: "btn btn-outline-primary" %>
+                            <%= link_to "フォローを外す", user_relationships_path(@user), data: { turbo_method: :delete }, class: "btn btn-outline-primary" %>
                           <% else %>
-                            <%= link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-primary" %>
+                            <%= link_to "フォローする", user_relationships_path(@user), data: { turbo_method: :post }, class: "btn btn-primary" %>
                           <% end %>
                         </div>
                       </div>
                     <% end %>
                     <% end %>
+                    <% unless @user.id == current_user.id %>
+                    <% if (current_user.following? @user) && (@user.following? current_user) %>
+                    <% if @isRoom == true %>
+                        <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
+                    <% else %>
+                        <%= form_for @room do |f| %>
+                            <%= fields_for @entry do |e| %>
+                                <%= e.hidden_field :user_id, value: @user.id %>
+                            <% end %>
+                            <%= f.submit "チャットを始める", class: "btn btn-primary btn-lg user-show-chat" %>
+                        <% end %>
+                    <% end %>
+                    <% end %>
+                <% end %>
                     <% if @user == current_user %>
                     <div class="ms-auto align-self-end">
                       <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-primary align-self-end" %>

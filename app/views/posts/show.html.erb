@@ -10,7 +10,11 @@
               <%= image_tag "no_image.png", class: "rounded-circle me-3", size: "60x60" %>
             <% end %>
             <div>
-              <h5 class="mb-1"><%= @post.user.name %>@<%= @post.user.user_name %></h5>
+              <h5 class="mb-1">
+                <%= link_to user_path(@post.user), class: "text-decoration-none text-dark" do %>
+                  <%= @post.user.name %>@<%= @post.user.user_name %>
+                <% end %>
+              </h5>
               <p class="mb-1"><%= @post.user.organization_name %> <%= @post.user.department_name %></p>
               <p class="mb-0"><%= @post.user.job_category.name %></p>
             </div>

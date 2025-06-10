@@ -13,6 +13,35 @@ class UsersController < ApplicationController
     @posts = @user.posts.page(params[:page]).per(8).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
+    # 自分（ログイン中ユーザー）が参加しているルーム一覧を取得
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+
+    # 相手ユーザーが参加しているルーム一覧を取得
+    @userEntry = Entry.where(user_id: @user.id)
+
+    # 自分自身のプロフィールを見ている場合はDM機能の表示は不要のためスキップ
+    if @user.id == current_user.id
+    
+    # 自分と相手が同じルーム（room_id）に入っていないかチェックし、共通のroom_idがあればそれを使ってチャット可能と判断して変数に保存
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+
+      # すでにルームがあるから何もしない
+      if @isRoom
+      
+      # 共通のルームがなければ新しいチャットルームをエントリー
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit

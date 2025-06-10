@@ -1,0 +1,26 @@
+<div class="container">
+    <% @entries.each do |e| %>
+        <% if @myUserId != e.user.id %>
+            <h2 class="text-center"><%= e.user.name %>@<%= e.user.user_name %></h2>
+        <% end %>
+    <% end %>
+
+
+    <% if @messages.present? %>
+        <% @messages.each do |m| %>
+            <% if @myUserId == m.user.id %>
+                <p class="text-start"><%= m.content %></p>
+            <% else %>
+                <p class="text-end"><%= m.content %></p>
+            <% end %>
+        <% end %>
+    <% end %>
+
+    <div class="text-center mt-6">
+      <%= form_with model: @message, local: true do |f| %>
+          <%= f.text_field :content, placeholder: "メッセージを入力してください", size: 50, class:"form-text-field" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.submit "投稿", class: 'form-submit' %>
+      <% end %>
+    </div>
+</div>

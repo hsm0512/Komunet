@@ -15,6 +15,10 @@ Rails.application.routes.draw do
       get 'confirm'
     end
   end
+
+  resources :rooms, only: [:create, :show]
+  resources :messages, only: [:create]  
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
