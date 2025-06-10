@@ -21,7 +21,7 @@
                     </div>
                     <% if @user == current_user %>
                     <div class="ms-auto align-self-end">
-                      <%= link_to "プロフィールを編集する", "#", class: "btn btn-primary align-self-end" %>
+                      <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-primary align-self-end" %>
                     </div>
                     <% end %>
                 </div>

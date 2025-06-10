@@ -7,4 +7,19 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(8).reverse_order
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to user_path(@user)
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :user_name, :profile_text, :organization_name, :department_name, :job_category_id, :profile_image)
+  end
 end

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="mb-4">プロフィール編集</h2>
+      
+      <%= form_with model: @user, local: true do |f| %>
+        <div class="mb-3">
+          <%= f.label :name, "表示名" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :user_name, "ユーザー名" %>
+          <%= f.text_field :user_name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :organization_name, "自治体名" %>
+          <%= f.text_field :organization_name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :department_name, "部署名" %>
+          <%= f.text_field :department_name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :job_category_id, "業務分野" %>
+          <%= f.collection_select :job_category_id, JobCategory.all, :id, :name, {}, class: "form-select" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :profile_text, "紹介文" %>
+          <%= f.text_area :profile_text, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :profile_image, "プロフィール画像" %>
+          <% if @user.profile_image_id.present? %>
+            <%= attachment_image_tag @user, :profile_image, size: "300x300", class: "form-control", style: "width: 300px; height: 300px; object-fit: cover;" %>
+          <% else %>
+            <%= image_tag "no_image.png", size: "300x300", class: "form-control", style: "width: 300px; height: 300px; object-fit: cover;" %>
+          <% end %>
+          <%= f.file_field :profile_image %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit "更新する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
