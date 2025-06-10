@@ -24,6 +24,31 @@
           <%= attachment_image_tag(@post, :image, class: "img-fluid", style: "height: 600px; width: auto;") %>
         </div>
       <% end %>
+
+      <div class="mb-5">
+        <h4>コメント</h4>
+        <%= form_with(model: [@post, @comment], local: true) do |f| %>
+          <div class="mb-3">
+            <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "コメントを入力してください" %>
+          </div>
+          <%= f.submit "コメントを送信", class: "btn btn-success" %>
+          
+          <div class="mt-4">
+            <% @post.comments.each do |comment| %>
+              <div class="card mb-2">
+                <div class="card-body">
+                  <p class="card-text"><%= comment.content %></p>
+                  <small class="text-muted">投稿者: <%= comment.user.name %>(<%= comment.user.user_name %>)</small>
+                  <% if comment.user == current_user %>
+                    <%= link_to "削除", post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
       <div class="mt-6 mb-5">
         <div class="d-flex justify-content-center gap-3">
           <%= link_to "編集する", edit_post_path(@post), class: "btn btn-primary" %>
