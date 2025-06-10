@@ -28,4 +28,9 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
+
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :user_name, presence: true, length: { maximum: 20 }
+  validates :organization_name, presence: true, length: { maximum: 20 }
+  validates :job_category_id, presence: true
 end

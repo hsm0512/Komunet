@@ -1,0 +1,20 @@
+ja:
+  errors:
+    format: "%{message}"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "メールアドレスを入力してください"
+            password:
+              blank: "パスワードを入力してください"
+            name:
+              blank: "名前を入力してください"
+            user_name:
+              blank: "ユーザー名を入力してください"
+            organization_name:
+              blank: "自治体名を入力してください"
+            job_category_id:
+              blank: "業務分野を選択してください"
