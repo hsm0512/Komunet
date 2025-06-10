@@ -15,6 +15,21 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).reverse_order
+
+    # キーワード検索
+    if params[:keyword].present?
+      @posts = @posts.where("title LIKE ? OR content LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+    end
+
+    # 業務分野検索
+    if params[:job_category_id].present?
+      @posts = @posts.where(job_category_id: params[:job_category_id])  
+    end
+
+    # 投稿スタイル検索
+    if params[:style_id].present?
+      @posts = @posts.where(style_id: params[:style_id])
+    end
   end
 
   def show
