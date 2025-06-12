@@ -9,9 +9,9 @@
     <% if @messages.present? %>
         <% @messages.each do |m| %>
             <% if @myUserId == m.user.id %>
-                <p class="text-start"><%= m.content %></p>
-            <% else %>
                 <p class="text-end"><%= m.content %></p>
+            <% else %>
+                <p class="text-start"><%= m.content %></p>
             <% end %>
         <% end %>
     <% end %>
