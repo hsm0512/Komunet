@@ -10,8 +10,6 @@ module Komunet
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
-    config.i18n.default_locale = :ja
-
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
@@ -24,5 +22,12 @@ module Komunet
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # デフォルトのロケールを日本語に設定
+    config.i18n.default_locale = :ja
+    # 利用可能なロケールを日本語のみに制限
+    config.i18n.available_locales = [:ja]
+    # フォールバックを無効化
+    config.i18n.fallbacks = false
   end
 end

@@ -18,3 +18,10 @@ ja:
               blank: "自治体名を入力してください"
             job_category_id:
               blank: "業務分野を選択してください"
+  
+  devise:
+    failure:
+      invalid: "メールアドレスまたはパスワードが無効です"
+      not_found_in_database: "メールアドレスまたはパスワードが無効です"
+      locked: "アカウントがロックされています"
+      inactive: "アカウントが無効です"

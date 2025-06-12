@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  belongs_to :job_category
+  belongs_to :job_category, optional: true
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
@@ -35,5 +35,5 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :user_name, presence: true, length: { maximum: 20 }
   validates :organization_name, presence: true, length: { maximum: 20 }
-  validates :job_category_id, presence: true
+  validates :job_category_id, presence: { message: "業務分野を選択してください" }
 end
