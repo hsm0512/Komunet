@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
     belongs_to :user
-    belongs_to :job_category
-    belongs_to :style
+    belongs_to :job_category, optional: true
+    belongs_to :style, optional: true
     attachment :image
     has_many :comments, dependent: :destroy
     has_many :favorites, dependent: :destroy

@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        blank: "を入力してください"
+        too_long: "は%{count}文字以内で入力してください"
+        taken: "はすでに存在します"
+        invalid: "は不正な値です"
+      models:
+        post:
+          attributes:
+            title:
+              blank: "タイトルを入力してください"
+              too_long: "タイトルは50文字以内で入力してください"
+            content:
+              blank: "本文を入力してください"
+              too_long: "本文は200文字以内で入力してください"
+            job_category_id:
+              blank: "業務分野を選択してください"
+            style_id:
+              blank: "投稿スタイルを選択してください" 
