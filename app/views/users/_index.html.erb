@@ -1,8 +1,7 @@
 <div class="container">
-</div>
-  <div class="row">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
     <% users.each do |user| %>
-      <div class="col-md-3 mb-4">
+      <div class="col">
         <%= link_to user_path(user), class: "text-decoration-none" do %>
           <div class="card h-100">
             <div class="card-body">
@@ -26,5 +25,9 @@
       </div>
     <% end %>
   </div>
-  <%= paginate users %>
+  <div class="row">
+    <div class="col-12">
+      <%= paginate users %>
+    </div>
+  </div>
 </div>

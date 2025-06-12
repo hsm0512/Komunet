@@ -1,8 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2>フォロー一覧</h2>
+<div class="users-view">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>フォロー一覧</h2>
+      </div>
     </div>
   </div>
+  <%= render "index", users: @users %>
 </div>
-<%= render "index", users: @users %>
+

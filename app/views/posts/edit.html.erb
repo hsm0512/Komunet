@@ -1,56 +1,58 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <h2 class="mb-4">投稿編集中</h2>
+<div class="posts-view">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h2 class="mb-4">投稿編集中</h2>
 
-      <% if @post.errors.any? %>
-        <div class="alert alert-danger">
-          <h4><%= @post.errors.count %>件のエラーが発生しました</h4>
-          <ul>
-            <% @post.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+        <% if @post.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= @post.errors.count %>件のエラーが発生しました</h4>
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= form_with model: @post, local: true do |f| %>
+          <div class="mb-3">
+            <%= f.label :title, "タイトル" %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :content, "本文" %>
+            <%= f.text_area :content, class: "form-control", rows: 10 %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :job_category_id, "業務分野" %>
+            <%= f.collection_select :job_category_id, JobCategory.all, :id, :name, {}, class: "form-select" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :style_id, "投稿スタイル" %>
+            <%= f.collection_select :style_id, Style.all, :id, :name, {}, class: "form-select" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :image, "画像ファイルを添付" %>
+            <% if @post.image.present? %>
+              <%= attachment_image_tag @post, :image, size: "300x300", class: "form-control" %>
             <% end %>
-          </ul>
-        </div>
-      <% end %>
+            <%= f.file_field :image %>
+          </div>
 
-      <%= form_with model: @post, local: true do |f| %>
-        <div class="mb-3">
-          <%= f.label :title, "タイトル" %>
-          <%= f.text_field :title, class: "form-control" %>
-        </div>
+          <div class="mb-3">
+          <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, {},{ class: "form-control" } %>
+          </div>
 
-        <div class="mb-3">
-          <%= f.label :content, "本文" %>
-          <%= f.text_area :content, class: "form-control", rows: 10 %>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :job_category_id, "業務分野" %>
-          <%= f.collection_select :job_category_id, JobCategory.all, :id, :name, {}, class: "form-select" %>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :style_id, "投稿スタイル" %>
-          <%= f.collection_select :style_id, Style.all, :id, :name, {}, class: "form-select" %>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :image, "画像ファイルを添付" %>
-          <% if @post.image.present? %>
-            <%= attachment_image_tag @post, :image, size: "300x300", class: "form-control" %>
-          <% end %>
-          <%= f.file_field :image %>
-        </div>
-
-        <div class="mb-3">
-        <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }, {},{ class: "form-control" } %>
-        </div>
-
-        <div class="mb-3">
-          <%= f.submit "更新する", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+          <div class="mb-3">
+            <%= f.submit "更新する", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

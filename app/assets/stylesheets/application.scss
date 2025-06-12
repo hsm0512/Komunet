@@ -22,10 +22,13 @@
     height: 200px;
 }
 .header {
+  background-color: #69e9f5;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  color: #000066;
+  font-weight: bold;
 }
 
 .header-left {

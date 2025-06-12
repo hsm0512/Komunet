@@ -1,102 +1,110 @@
-<div class="container">
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <% if @user.profile_image_id.present? %>
-                    <%= attachment_image_tag @user, :profile_image, class: "rounded-circle", size: "100x100" %>
-                    <% else %>
-                    <%= image_tag "no_image.png", class: "rounded-circle", size: "100x100" %>
-                    <% end %>
-                    <div class="ms-4">
-                    <h4 class="mb-1"><%= @user.name %></h4>
-                    <p class="text-muted mb-1">@<%= @user.user_name %></p>
-                    <p class="mb-1"><%= @user.organization_name %></p>
-                    <p class="mb-1"><%= @user.department_name %></p>
-                    <p class="mb-0"><%= @user.job_category.name %></p>
-                    <% if @user.profile_text.present? %>
-                      <p class="mt-3 mb-0"><%= simple_format(@user.profile_text) %></p>
-                    <% end %>
-                    </div>
+<div class="users-view">
+  <div class="container px-4">
+      <div class="row justify-content-center">
+          <div class="col-md-10">
+              <div class="card mb-4">
+                  <div class="card-body">
+                  <div class="d-flex align-items-center">
+                      <% if @user.profile_image_id.present? %>
+                      <%= attachment_image_tag @user, :profile_image, class: "rounded-circle", size: "100x100" %>
+                      <% else %>
+                      <%= image_tag "no_image.png", class: "rounded-circle", size: "100x100" %>
+                      <% end %>
+                      <div class="ms-4">
+                      <h4 class="mb-1"><%= @user.name %></h4>
+                      <p class="text-muted mb-1">@<%= @user.user_name %></p>
+                      <p class="mb-1"><%= @user.organization_name %></p>
+                      <p class="mb-1"><%= @user.department_name %></p>
+                      <p class="mb-0"><%= @user.job_category.name %></p>
+                      <% if @user.profile_text.present? %>
+                        <p class="mt-3 mb-0"><%= simple_format(@user.profile_text) %></p>
+                      <% end %>
+                      </div>
 
-                    <!-- フォロー機能 -->
-                      <div class="ms-auto align-self-end">
-                        <div class="d-flex align-items-center gap-3">
-                          <div class="text-center">
-                            <%= link_to follows_user_path(@user), class: "text-decoration-none" do %>
-                              <div class="text-dark"><%= @following_users.count %></div>
-                              <div class="text-muted small">フォロー</div>
+                      <!-- フォロー機能 -->
+                        <div class="ms-auto align-self-end">
+                          <div class="d-flex align-items-center gap-3">
+                            <div class="text-center">
+                              <%= link_to follows_user_path(@user), class: "text-decoration-none" do %>
+                                <div class="text-dark"><%= @following_users.count %></div>
+                                <div class="text-muted small">フォロー</div>
+                              <% end %>
+                            </div>
+                            <div class="text-center">
+                              <%= link_to followers_user_path(@user), class: "text-decoration-none" do %>
+                                <div class="text-dark"><%= @follower_users.count %></div>
+                                <div class="text-muted small">フォロワー</div>
+                              <% end %>
+                            </div>
+                            <% if current_user != @user %>
+                            <% if current_user.following?(@user) %>
+                              <%= link_to "フォローを外す", user_relationships_path(@user), data: { turbo_method: :delete }, class: "btn btn-outline-primary" %>
+                            <% else %>
+                              <%= link_to "フォローする", user_relationships_path(@user), data: { turbo_method: :post }, class: "btn btn-primary" %>
+                            <% end %>
                             <% end %>
                           </div>
-                          <div class="text-center">
-                            <%= link_to followers_user_path(@user), class: "text-decoration-none" do %>
-                              <div class="text-dark"><%= @follower_users.count %></div>
-                              <div class="text-muted small">フォロワー</div>
-                            <% end %>
-                          </div>
-                          <% if current_user != @user %>
-                          <% if current_user.following?(@user) %>
-                            <%= link_to "フォローを外す", user_relationships_path(@user), data: { turbo_method: :delete }, class: "btn btn-outline-primary" %>
+                        </div>
+
+                      <!-- チャット機能 -->
+                      <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+                        <div class="text-center mt-3">
+                          <% if @isRoom %>
+                            <%= link_to "チャットへ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
                           <% else %>
-                            <%= link_to "フォローする", user_relationships_path(@user), data: { turbo_method: :post }, class: "btn btn-primary" %>
-                          <% end %>
+                            <%= form_with model: @room, local: true do |f| %>
+                                <%= f.hidden_field :user_id, value: @user.id %>
+                                <%= f.submit "チャットを始める", class: "btn btn-primary btn-lg" %>
+                            <% end %>
                           <% end %>
                         </div>
+                      <% end %>
+
+
+                      <!-- プロフィール編集 -->
+                      <% if @user == current_user %>
+                      <div class="ms-auto align-self-end">
+                        <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-primary align-self-end" %>
                       </div>
+                      <% end %>
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-                    <!-- チャット機能 -->
-                    <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-                      <div class="text-center mt-3">
-                        <% if @isRoom %>
-                          <%= link_to "チャットへ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
-                        <% else %>
-                          <%= form_with model: @room, local: true do |f| %>
-                              <%= f.hidden_field :user_id, value: @user.id %>
-                              <%= f.submit "チャットを始める", class: "btn btn-primary btn-lg" %>
-                          <% end %>
-                        <% end %>
+      <!-- 投稿一覧 -->
+      <div class="row justify-content-center">
+          <div class="col-md-10">
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                  <% @posts.each do |post| %>
+                  <div class="col">
+                      <div class="card h-100">
+                      <div class="card-body">
+                          <h3 class="card-title h4 mb-3"><%= post.title %></h3>
+                          <div class="d-flex gap-2 mb-3">
+                          <span class="badge bg-primary"><%= post.job_category.name %></span>
+                          <span class="badge bg-secondary"><%= post.style.name %></span>
+                          </div>
+                          <p class="card-text"><%= truncate(post.content, length: 100) %></p>
                       </div>
-                    <% end %>
-
-
-                    <!-- プロフィール編集 -->
-                    <% if @user == current_user %>
-                    <div class="ms-auto align-self-end">
-                      <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-primary align-self-end" %>
-                    </div>
-                    <% end %>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 投稿一覧 -->
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <% @posts.each do |post| %>
-        <div class="col">
-            <div class="card h-100">
-            <div class="card-body">
-                <h3 class="card-title h4 mb-3"><%= post.title %></h3>
-                <div class="d-flex gap-2 mb-3">
-                <span class="badge bg-primary"><%= post.job_category.name %></span>
-                <span class="badge bg-secondary"><%= post.style.name %></span>
-                </div>
-                <p class="card-text"><%= truncate(post.content, length: 100) %></p>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-between align-items-center">
-                <%= link_to "詳細を見る", post_path(post), class: "btn btn-outline-primary" %>
-                <div>
-                    <i class="bi bi-heart-fill text-danger"></i> <%= post.favorites.count %>
-                    <i class="bi bi-chat-fill text-primary ms-2"></i> <%= post.comments.count %>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <% end %>
-    </div>
-    <%= paginate @posts %>
+                      <div class="card-footer">
+                          <div class="d-flex justify-content-between align-items-center">
+                          <%= link_to "詳細を見る", post_path(post), class: "btn btn-outline-primary" %>
+                          <div>
+                              <i class="bi bi-heart-fill text-danger"></i> <%= post.favorites.count %>
+                              <i class="bi bi-chat-fill text-primary ms-2"></i> <%= post.comments.count %>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  <% end %>
+              </div>
+              <div class="text-center mt-4">
+                  <%= paginate @posts %>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
