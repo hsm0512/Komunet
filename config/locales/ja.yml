@@ -1,11 +1,6 @@
 ja:
   activerecord:
     errors:
-      messages:
-        blank: "を入力してください"
-        too_long: "は%{count}文字以内で入力してください"
-        taken: "はすでに存在します"
-        invalid: "は不正な値です"
       models:
         post:
           attributes:
@@ -19,3 +14,8 @@ ja:
               blank: "業務分野を選択してください"
             style_id:
               blank: "投稿スタイルを選択してください" 
+        comment:
+          attributes:
+            content:
+              blank: "コメントを入力してください"
+              too_long: "コメントは200文字以内で入力してください"
