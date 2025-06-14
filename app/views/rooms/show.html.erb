@@ -32,6 +32,7 @@
                         </div>
                     <% end %>
                 <% end %>
+                <div id="scroll-bottom"></div>
             <% end %>
 
         <div class="text-center mt-6">
@@ -43,3 +44,13 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('turbo:load', function() {
+        const scrollBottom = document.getElementById('scroll-bottom');
+        if (scrollBottom) {
+            scrollBottom.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+</script>
