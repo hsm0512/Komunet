@@ -16,6 +16,20 @@
 
 @import "bootstrap";
 
+@keyframes shake {
+  0%, 100% { 
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+.shake {
+  transform-origin: top center;
+  display: inline-block;
+  animation: shake 1.0s ease-in-out infinite;
+} 
 
 .logo-image {
     width: 200px;
