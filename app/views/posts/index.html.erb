@@ -7,7 +7,7 @@
             <%= f.text_field :keyword, placeholder: "キーワード検索", class: "form-control" %>
           </div>
           <div class="flex-grow-1">
-            <%= f.select :job_category_id, 
+            <%= f.select :job_category_id,
                 JobCategory.all.map { |c| [c.name, c.id] },
                 { include_blank: "業務分野を選択" },
                 class: "form-select" %>

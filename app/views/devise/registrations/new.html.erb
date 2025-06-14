@@ -32,17 +32,19 @@
             <div class="field mb-3">
               <%= f.label :password, "パスワード" do %>
                 パスワード<span class="badge bg-danger ms-1">必須</span>
-              <% end %><br />
+              <% end %>
               <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br />
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <br />
               <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
             </div>
 
             <div class="field mb-3">
               <%= f.label :password_confirmation, "パスワード(確認用)" do %>
                 パスワード(確認用)<span class="badge bg-danger ms-1">必須</span>
-              <% end %><br />
+              <% end %>
+              <br />
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
             </div>
 

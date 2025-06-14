@@ -1,56 +1,55 @@
 <div class="rooms-view">
-    <div class="container">
-        <% @entries.each do |e| %>
-            <% if @myUserId != e.user.id %>
-                <div class="d-flex flex-column align-items-center mb-5">
-                    <% if e.user.profile_image_id.present? %>
-                        <%= attachment_image_tag e.user, :profile_image, class: "rounded-circle", size: "100x100" %>
-                    <% end %>
-                    <h2 class="text-center mt-3">
-                        <%= e.user.name %>
-                        <span class="text-muted small">@<%= e.user.user_name %></span>
-                    </h2>
-                </div>
-            <% end %>
-        <% end %>
+	<div class="container">
+		<% @entries.each do |e| %>
+			<% if @myUserId != e.user.id %>
+				<div class="d-flex flex-column align-items-center mb-5">
+					<% if e.user.profile_image_id.present? %>
+						<%= attachment_image_tag e.user, :profile_image, class: "rounded-circle", size: "100x100" %>
+					<% end %>
+					<h2 class="text-center mt-3">
+						<%= e.user.name %>
+						<span class="text-muted small">@<%= e.user.user_name %></span>
+					</h2>
+				</div>
+			<% end %>
+		<% end %>
 
-            <% if @messages.present? %>
-                <% @messages.each do |m| %>
-                    <% if @myUserId == m.user.id %>
-                        <div class="d-flex justify-content-end">
-                            <div class="message-bubble">
-                                <p><%= m.content %></p>
-                                <p class="text-muted small mb-0"><%= m.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M") %></p>
-                            </div>
-                        </div>
-                    <% else %>
-                        <div class="d-flex justify-content-start">
-                            <div class="message-bubble">
-                                <p><%= m.content %></p>
-                                <p class="text-muted small mb-0"><%= m.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M") %></p>
-                            </div>
-                        </div>
-                    <% end %>
-                <% end %>
-                <div id="scroll-bottom"></div>
-            <% end %>
+		<% if @messages.present? %>
+			<% @messages.each do |m| %>
+				<% if @myUserId == m.user.id %>
+					<div class="d-flex justify-content-end">
+						<div class="message-bubble">
+							<p><%= m.content %></p>
+							<p class="text-muted small mb-0"><%= m.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M") %></p>
+						</div>
+					</div>
+				<% else %>
+					<div class="d-flex justify-content-start">
+						<div class="message-bubble">
+							<p><%= m.content %></p>
+							<p class="text-muted small mb-0"><%= m.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M") %></p>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+			<div id="scroll-bottom"></div>
+		<% end %>
 
-        <div class="text-center mt-6">
-        <%= form_with model: @message, local: true do |f| %>
-            <%= f.text_area :content, placeholder: "メッセージを入力してください", rows: 5, class:"form-control form-control w-75 mx-auto mt-3 mb-2" %>
-            <%= f.hidden_field :room_id, value: @room.id %>
-            <%= f.submit "送信", class: 'btn btn-primary mt-2 mb-3' %>
-        <% end %>
-        </div>
-    </div>
+		<div class="text-center mt-6">
+			<%= form_with model: @message, local: true do |f| %>
+				<%= f.text_area :content, placeholder: "メッセージを入力してください", rows: 5, class:"form-control form-control w-75 mx-auto mt-3 mb-2" %>
+				<%= f.hidden_field :room_id, value: @room.id %>
+				<%= f.submit "送信", class: 'btn btn-primary mt-2 mb-3' %>
+			<% end %>
+		</div>
+	</div>
 </div>
 
-
 <script>
-    document.addEventListener('turbo:load', function() {
-        const scrollBottom = document.getElementById('scroll-bottom');
-        if (scrollBottom) {
-            scrollBottom.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
+	document.addEventListener('turbo:load', function() {
+		const scrollBottom = document.getElementById('scroll-bottom');
+		if (scrollBottom) {
+			scrollBottom.scrollIntoView({ behavior: 'smooth' });
+		}
+	});
 </script>
