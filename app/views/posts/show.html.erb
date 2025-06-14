@@ -42,23 +42,35 @@
         </p>
         
         <div class="mb-5">
-          <h4>本文</h4>
+          <div class="d-flex align-items-center mb-3">
+            <h4 class="mb-0 me-3">本文</h4>
+            <div class="flex-grow-1 border-top border-2 border-white"></div>
+          </div>
           <p><%= simple_format(@post.content) %></p>
         </div>
 
         <div class="mb-5">
-          <h4>業務分野</h4>
+          <div class="d-flex align-items-center mb-3">
+            <h4 class="mb-0 me-3">業務分野</h4>
+            <div class="flex-grow-1 border-top border-2 border-white"></div>
+          </div>
           <p><%= @post.job_category.name %></p>
         </div>
 
         <div class="mb-5">
-          <h4>投稿スタイル</h4>
+          <div class="d-flex align-items-center mb-3">
+            <h4 class="mb-0 me-3">投稿スタイル</h4>
+            <div class="flex-grow-1 border-top border-2 border-white"></div>
+          </div>
           <p><%= @post.style.name %></p>
         </div>
 
         <% if @post.image_id.present? %>
           <div class="mb-5">
-            <h4>画像</h4>
+            <div class="d-flex align-items-center mb-3">
+              <h4 class="mb-0 me-3">画像</h4>
+              <div class="flex-grow-1 border-top border-2 border-white"></div>
+            </div>
             <%= attachment_image_tag(@post, :image, class: "img-fluid", style: "height: 600px; width: auto;") %>
           </div>
         <% end %>
