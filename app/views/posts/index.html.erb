@@ -21,7 +21,7 @@
           <%= f.submit "検索", class: "btn btn-primary" %>
         <% end %>
         <% if @posts.empty? && params[:keyword].present? || params[:job_category_id].present? || params[:style_id].present? %>
-          <div class="alert alert-info mt-3">
+          <div class="alert mt-3">
             検索条件に一致する投稿が見つかりませんでした。
           </div>
         <% end %>
