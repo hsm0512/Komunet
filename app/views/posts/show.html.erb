@@ -93,7 +93,13 @@
                 <div class="card mb-2">
                   <div class="card-body">
                     <p class="card-text"><%= comment.content %></p>
-                    <small class="text-muted">投稿者: <%= comment.user.name %>@<%= comment.user.user_name %></small>
+                    <div class="d-flex flex-start">
+                      <p class="card-text text-muted me-2"><%= comment.user.name %>@<%= comment.user.user_name %></p>
+                      <p class="card-text text-muted">
+                        <i class="bi bi-clock-fill text-muted"></i>
+                        <%= comment.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M") %>
+                      </p>
+                    </div>
                     <% if comment.user == current_user %>
                       <%= link_to "削除", post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
                     <% end %>
