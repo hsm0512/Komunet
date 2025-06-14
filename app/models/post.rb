@@ -6,10 +6,10 @@ class Post < ApplicationRecord
     has_many :comments, dependent: :destroy
     has_many :favorites, dependent: :destroy
 
-    validates :title, presence: true, length: { maximum: 50 }
-    validates :content, presence: true, length: { maximum: 200 }
-    validates :job_category_id, presence: true
-    validates :style_id, presence: true 
+    validates :title, presence: true, length: { maximum: 50 }, on: :publish
+    validates :content, presence: true, length: { maximum: 200 }, on: :publish
+    validates :job_category_id, presence: true, on: :publish
+    validates :style_id, presence: true, on: :publish
 
     enum status: { draft: 1, published: 0 }
 

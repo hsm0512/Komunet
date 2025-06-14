@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(8).reverse_order
+    @posts = @user.posts.published.page(params[:page]).per(8).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
     # 自分（ログイン中ユーザー）が参加しているルーム一覧を取得

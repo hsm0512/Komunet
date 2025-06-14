@@ -13,8 +13,8 @@
         </div>
         <h3 class="card-title h4 mb-3"><%= post.title %></h3>
         <div class="d-flex gap-2 mb-3">
-          <span class="badge bg-primary"><%= post.job_category.name %></span>
-          <span class="badge bg-secondary"><%= post.style.name %></span>
+          <span class="badge bg-primary"><%= post.job_category&.name %></span>
+          <span class="badge bg-secondary"><%= post.style&.name %></span>
         </div>
         <p class="card-text"><%= truncate(post.content, length: 100) %></p>
       </div>

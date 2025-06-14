@@ -6,10 +6,18 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
-      redirect_to post_path(@post.id)
+    if @post.status == "draft"
+      if @post.save
+      redirect_to confirm_posts_path(@post.id)
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      if @post.save(context: :publish)
+        redirect_to post_path(@post.id) 
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 

@@ -54,7 +54,7 @@
             <h4 class="mb-0 me-3">業務分野</h4>
             <div class="flex-grow-1 border-top border-2 border-white"></div>
           </div>
-          <p><%= @post.job_category.name %></p>
+          <p><%= @post.job_category&.name %></p>
         </div>
 
         <div class="mb-5">
@@ -62,7 +62,7 @@
             <h4 class="mb-0 me-3">投稿スタイル</h4>
             <div class="flex-grow-1 border-top border-2 border-white"></div>
           </div>
-          <p><%= @post.style.name %></p>
+          <p><%= @post.style&.name %></p>
         </div>
 
         <% if @post.image_id.present? %>
