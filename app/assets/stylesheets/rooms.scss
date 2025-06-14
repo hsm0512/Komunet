@@ -1,0 +1,15 @@
+.rooms-view {
+    background-color: #69e9f5;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.message-bubble {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 8px 8px;
+    max-width: 70%;
+    margin-bottom: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+}
