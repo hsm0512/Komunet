@@ -4,9 +4,9 @@
           <div class="col-md-10">
               <div class="card mb-4">
                   <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <!-- プロフィール -->
-                      <div class="d-flex align-items-center">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <!-- 左側：プロフィール -->
+                      <div class="d-flex align-items-start">  
                         <% if @user.profile_image_id.present? %>
                           <%= attachment_image_tag @user, :profile_image, class: "rounded-circle", size: "100x100" %>
                         <% else %>
@@ -25,7 +25,7 @@
                       </div>
                     </div>
 
-                      <!-- フォロー・フォロワー・チャット・プロフィール編集ボタン -->
+                      <!-- 右側：フォロー・フォロワー・チャット・プロフィール編集ボタン -->
                       <div class="d-flex flex-column align-items-end gap-3">
 
                       <!-- フォロー機能 -->
@@ -55,11 +55,11 @@
                       <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
                         <div>
                           <% if @isRoom %>
-                            <%= link_to "チャットへ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
+                            <%= link_to "DMへ", room_path(@roomId), class: "btn btn-primary btn-lg" %>
                           <% else %>
                             <%= form_with model: @room, local: true do |f| %>
                               <%= f.hidden_field :user_id, value: @user.id %>
-                              <%= f.submit "チャットを始める", class: "btn btn-primary btn-lg" %>
+                              <%= f.submit "DMを始める", class: "btn btn-primary btn-lg" %>
                             <% end %>
                           <% end %>
                         </div>
@@ -109,6 +109,9 @@
               <div class="text-center mt-5">
                   <%= paginate @posts %>
               </div>
+              <div class="text-center mt-5">
+                <%= link_to "戻る", users_path, class: "btn btn-secondary" %>
+              </div>  
           </div>
       </div>
   </div>
