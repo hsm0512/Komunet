@@ -1,5 +1,32 @@
 .posts-view {
     background-color: #69e9f5;
     min-height: 100vh;
-    padding: 2rem 0;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.search-form .flex-grow-1 {
+    width: 100%;
+}
+
+.search-form .form-control,
+.search-form .form-select {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .search-form {
+        flex-direction: column;
+        padding: 0 !important;
+    }    
 }

@@ -65,6 +65,7 @@
 
 .nav-link {
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .page a,
@@ -96,4 +97,21 @@
 .first a:hover,
 .last a:hover {
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 0 auto;
+  }
+  .nav-link {
+    text-align: center;
+    padding: 0.5rem;
+  }
 }
