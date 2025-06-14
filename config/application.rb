@@ -29,5 +29,8 @@ module Komunet
     config.i18n.available_locales = [:ja]
     # フォールバックを無効化
     config.i18n.fallbacks = false
+    # 日本時間に設定
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
   end
 end
