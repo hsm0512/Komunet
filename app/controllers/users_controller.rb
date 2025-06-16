@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.page(params[:page]).per(5)
+    @users = User.page(params[:page]).per(8)
 
     # キーワード検索
     if params[:keyword].present?
