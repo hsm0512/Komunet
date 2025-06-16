@@ -122,3 +122,20 @@
     padding: 0.5rem;
   }
 }
+
+@media (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-menu {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin: 0 auto;
+  }
+  .nav-link {
+    text-align: center;
+    padding: 0.5rem;
+  }
+}

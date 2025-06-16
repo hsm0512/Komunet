@@ -11,6 +11,11 @@
     justify-content: space-between;
 }
 
+.users-view .card-text {
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
 @media (max-width: 768px) {
     .user-profile {
         flex-direction: column;
