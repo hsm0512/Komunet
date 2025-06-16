@@ -11,8 +11,14 @@
     justify-content: space-between;
 }
 
+.users-view .card {
+    min-height: 200px;
+}
+
 .users-view .card-text {
+    width: 100%;
     overflow-wrap: break-word;
+    word-break: break-all;
     white-space: normal;
 }
 
