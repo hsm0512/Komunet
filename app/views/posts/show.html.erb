@@ -71,7 +71,7 @@
               <h4 class="mb-0 me-3">画像</h4>
               <div class="flex-grow-1 border-top border-2 border-white"></div>
             </div>
-            <%= image_tag attachment_url(@post, :image, filename: true), class: "img-fluid", style: "max-width: 100%; height: auto;" %>
+            <%= attachment_image_tag @post, :image, class: "img-fluid", style: "max-width: 100%; height: auto;" %>
           </div>
         <% end %>
 
