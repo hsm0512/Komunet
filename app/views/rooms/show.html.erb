@@ -4,7 +4,7 @@
 			<% if @myUserId != e.user.id %>
 				<div class="d-flex flex-column align-items-center mb-5">
 					<% if e.user.profile_image_id.present? %>
-						<%= attachment_image_tag e.user, :profile_image, class: "rounded-circle", size: "100x100" %>
+						<%= attachment_image_tag e.user, :profile_image, host: Refile.host, class: "rounded-circle", size: "100x100" %>
 					<% end %>
 					<h2 class="text-center mt-3">
 						<%= e.user.name %>

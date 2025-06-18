@@ -1,12 +1,12 @@
 <div class="posts-view">
   <div class="container">
     <div class="row justify-content-center g-0">
-      <div class="col-12 col-md-8 px-0">
+      <div class="col-12 col-lg-8 px-0">
         <div class="card mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center mb-3">
               <% if @post.user.profile_image.present? %>
-                <%= attachment_image_tag @post.user, :profile_image, class: "rounded-circle me-3", size: "60x60" %>
+                <%= attachment_image_tag @post.user, :profile_image, host: Refile.host, class: "rounded-circle me-3", size: "60x60" %>
               <% else %>
                 <%= image_tag "no_image.png", class: "rounded-circle me-3", size: "60x60" %>
               <% end %>
@@ -71,7 +71,7 @@
               <h4 class="mb-0 me-3">画像</h4>
               <div class="flex-grow-1 border-top border-2 border-white"></div>
             </div>
-            <%= attachment_image_tag @post, :image, class: "img-fluid", style: "max-width: 100%; height: auto;" %>
+            <%= attachment_image_tag @post, :image, host: Refile.host, class: "img-fluid", style: "max-width: 100%; height: auto;" %>
           </div>
         <% end %>
 

@@ -38,7 +38,7 @@
           <div class="mb-3">
             <%= f.label :profile_image, "プロフィール画像" %>
             <% if @user.profile_image_id.present? %>
-              <%= attachment_image_tag @user, :profile_image, size: "300x300", class: "form-control" %>
+              <%= attachment_image_tag @user, :profile_image, host: Refile.host, size: "300x300", class: "form-control" %>
             <% end %>
             <%= f.file_field :profile_image %>
           </div>

@@ -1,7 +1,7 @@
 <div class="posts-view">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-12 col-lg-8">
         <h2 class="mb-4">投稿編集中</h2>
 
         <% if @post.errors.any? %>
@@ -39,7 +39,7 @@
           <div class="mb-3">
             <%= f.label :image, "画像ファイルを添付" %>
             <% if @post.image.present? %>
-              <%= attachment_image_tag @post, :image, size: "300x300", class: "form-control" %>
+              <%= attachment_image_tag @post, :image, host: Refile.host, size: "300x300", class: "form-control" %>
             <% end %>
             <%= f.file_field :image %>
           </div>
