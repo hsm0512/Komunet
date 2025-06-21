@@ -15,6 +15,18 @@ Komunetは、全国の地方自治体に勤務する公務員同士がつなが�
 もちろん、個人情報など機密情報の取り扱いには最大限の注意が必要であるため、ユーザーは投稿内容について十分な注意を払う必要があります。しかし、業務に関するノウハウや悩み、工夫、事例の共有、ＰＲなどは、より気軽に共有できる場があっていいと考えています。<br>
 このアプリを通じて、些細なやりとりや気軽な相談が、企画・政策立案や業務改善のヒントとなり、また同じような悩みを共有することで少しでも気持ちが軽くなる、そんな場になればと考えています。
 ## 利用方法
+### ユーザー新規登録またはログイン
+<img src="app/assets/images/readme_regiration.jpg" alt="新規登録" width="300">
+<img src="app/assets/images/readme_login.jpg" alt="ログイン" width="300">
+
+### 記事を投稿
+<img src="app/assets/images/readme_post_new.jpg" alt="記事を投稿" width="300">
+
+### 記事を閲覧・いいね・コメント
+<img src="app/assets/images/readme_post_show.jpg" alt="記事を投稿・いいね・コメント" width="300">
+
+### DM
+<img src="app/assets/images/readme_dm.jpg" alt="DM" width="300">
 
 ## 機能一覧
 - ユーザー登録・ログイン<br>
