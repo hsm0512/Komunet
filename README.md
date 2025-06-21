@@ -29,7 +29,7 @@ Komunetは、全国の地方自治体に勤務する公務員同士がつなが�
 <img src="app/assets/images/readme_post_show.jpg" alt="記事を投稿・いいね・コメント" width="300">
 
 ### ユーザーをフォロー
-<img src="readme_user_show.jpg" alt="フォロー" width="300">
+<img src="app/assets/images/readme_user_show.jpg" alt="フォロー" width="300">
 
 ### DM
 <img src="app/assets/images/readme_dm.jpg" alt="DM" width="300">
